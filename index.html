@@ -1271,35 +1271,7 @@
 
 
 
-  <script>
-    (function(){
-    function killButtons(root=document){
-      root.querySelectorAll('.btn_open_btn, .btn_open, .btn_close').forEach(el=>el.remove());
-    }
-    function unlockDetail(){
-      const box=document.querySelector('.detailinfo');
-      if(!box) return;
-      box.classList.remove('showstep1');
-      box.style.maxHeight='none'; box.style.overflow='visible';
-      const content=box.querySelector('.showcontent');
-      if(content){ content.style.maxHeight='none'; content.style.overflow='visible'; }
-    }
-    function stripListeners(){
-      document.querySelectorAll('.btn_open_btn, .btn_open, .btn_close').forEach(btn=>{
-        const clone=btn.cloneNode(true);
-        btn.parentNode && btn.parentNode.replaceChild(clone,btn);
-      });
-    }
-    function hardBlockClicks(){
-      document.addEventListener('click', e=>{
-        const bad=e.target.closest('.btn_open_btn, .btn_open, .btn_close');
-        if(bad){ e.stopImmediatePropagation(); e.stopPropagation(); e.preventDefault(); }
-      }, true);
-    }
-    function neutralize(){ killButtons(); stripListeners(); unlockDetail(); hardBlockClicks(); }
-    if(document.readyState!=='loading') neutralize();
-    else document.addEventListener('DOMContentLoaded', neutralize);
-    })();
+<script>
   (function(){
   const EASE='transform .45s cubic-bezier(.22,.61,.36,1)';
   const sel={
@@ -1410,7 +1382,7 @@
     `- 닉네임 표시: ${selText('displayName')||'-'}`,
     `- 후원 테마 닉네임 표시: ${selText('donationName')||'-'}`,
     `- 스타일/참고: ${(val('[name="styleNotes"]')||'-').replace(/\s+$/,'')}`,
-    `- 예상 총액: ${sumTotal.textContent} (참고용, 최종 견적 아님)`
+    `- 예상 견적가: ${sumTotal.textContent} (예상 견적가입니다.)`
     ].join('\n');
   
     try{
@@ -1439,4 +1411,4 @@
       if(sec)sec.scrollIntoView({behavior:"smooth",block:"start"});
     });
     });},300);
-  </script>
+</script>
